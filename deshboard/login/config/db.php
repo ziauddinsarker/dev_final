@@ -12,6 +12,6 @@
  * DB_PASS: the password of the above user
  */
 define("DB_HOST", "localhost");
-define("DB_NAME", "bhaloach_dev");
+define("DB_NAME", "bhaloach_final");
 define("DB_USER", "bhaloachee");
 define("DB_PASS", "19A14t1&");

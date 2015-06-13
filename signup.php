@@ -1,6 +1,6 @@
 <?php //Database Configuration File
     include 'db/config.php';
-	$sql_doc_cat = "SELECT doctors_category.doctors_category_name FROM doctors_category ORDER BY doctors_category_name ASC";
+	$sql_doc_cat = "SELECT doctors_category.doctors_category_id,doctors_category.doctors_category_name FROM doctors_category ORDER BY doctors_category_name ASC";
 	$doc_cat = mysql_query($sql_doc_cat, $conn) or die ('Problem with query' . mysql_error());
 ?>
 <?php include 'templates/header.php';?>	
@@ -68,8 +68,9 @@
 									echo "<select class=\"form-control\" name=\"specialist\" id=\"sel1\">";	
 									
 									while ($row = mysql_fetch_array($doc_cat)){ 
+									$doctors_category_id = $row["doctors_category_id"];									
 									$doctors_category_name = $row["doctors_category_name"];									
-										echo "<option>" . $doctors_category_name . "</option>"; 							
+										echo "<option value=". $doctors_category_id ." >" . $doctors_category_name . "</option>"; 							
 									}	
 									echo "</select>";								
 								?>

@@ -43,8 +43,8 @@
 		  
 		  <nav class="main-nav nav navbar-nav navbar-right">
 			<ul>
-			<li><a class="cd-signin btn btn-primary" href="http://bhalo-achee.com/dev_final/deshboard/login/index.php">Sign in</a></li>
-			<li><a class="cd-signup btn btn-primary" href="http://bhalo-achee.com/dev_final/signup.php">Sign up</a></li>
+			<li><a class="cd-signin btn btn-primary" href="/dev_final/deshboard/login/index.php">Sign in</a></li>
+			<li><a class="cd-signup btn btn-primary" href="/dev_final/signup.php">Sign up</a></li>
 				 <!-- 
 				<li><a class="cd-signin" href="#0">Sign in</a></li>
 				<li><a class="cd-signup" href="#0">Sign up</a></li>
