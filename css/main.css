@@ -2,8 +2,16 @@
 	max-width:960px;
 }
 
+.container.banner{
+	margin-top:110px;
+	border: 1px solid;
+	margin-bottom:20px;
+	
+}
+
+
 .main{
-	padding-top:120px;
+	/* padding-top:120px; */
 	height:100vh;
 	/* height:100%; */
 	background-color:#e7e7e7;
@@ -16,7 +24,7 @@
     height: auto;
     padding: 10px 0;
 }
-#doctors {
+#doctors, #company {
     padding: 17px;
 }
 footer {
@@ -116,7 +124,7 @@ footer {
 }
 
 .event-single {
-    background: none repeat scroll 0 0 tan;
+    /* background: none repeat scroll 0 0 tan; */
     border-radius: 10px;
     margin: 10px 0 8px;
 }

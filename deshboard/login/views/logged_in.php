@@ -1,5 +1,5 @@
 <!-- if you need user information, just put them into the $_SESSION variable and output them here -->
-<?php header("Location: http://bhalo-achee.com/dev_final/deshboard/pages/index.php");
+<?php header("Location: http://localhost/dev_final/deshboard/pages/index.php");
 die();
 ?>
 Hey, <?php echo $_SESSION['user_name']; ?>. You are logged in.

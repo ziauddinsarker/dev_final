@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="http://localhost/dev/deshboard/pages/medicine.php">
+                        <a href="http://localhost/dev_final/deshboard/pages/medicine.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="http://localhost/dev/deshboard/pages/shop.php">
+                        <a href="http://localhost/dev_final/deshboard/pages/shop.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="http://localhost/dev/deshboard/pages/doctors.php">
+                        <a href="http://localhost/dev_final/deshboard/pages/doctors.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -227,7 +227,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="http://localhost/dev/deshboard/pages/blog.php">
+                        <a href="http://localhost/dev_final/deshboard/pages/blog.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

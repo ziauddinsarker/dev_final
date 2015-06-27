@@ -33,7 +33,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="index.php"><img src="images/balogo.png" height="100" width="80"/></a>
+		  <a class="navbar-brand" href="index.php"><img src="images/logo_v4.png" height="100" width="80"/></a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 		  <ul class="nav navbar-nav">
@@ -58,7 +58,11 @@
 	</nav>
 
 	</header>
-	
+	<div class="container banner">
+		<div class="row">
+			<img class="img-responsive" src="images/banner.jpg">
+		</div>
+	</div>
 	<!--Main Starts Here -->	
 	<div class="main">
 		<div class="container">	

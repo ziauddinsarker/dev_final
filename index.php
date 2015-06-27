@@ -1,7 +1,24 @@
 <?php //Database Configuration File
     include 'db/config.php';
 	$sql_division = "SELECT division.division_name FROM division ORDER BY division_name ASC";
+	
+	$sql_doctors_category = "SELECT
+					doctors_category.doctors_category_id,
+					doctors_category.doctors_category_name,
+					COUNT(doctors_category.doctors_category_id) doctors_count
+					FROM
+					doctors_category
+					INNER JOIN doctors ON doctors.doctors_category = doctors_category.doctors_category_id
+					GROUP BY doctors_category.doctors_category_id
+					ORDER BY doctors_category.doctors_category_name";
+	
+	$sql_events = "SELECT events.events_name, events.events_time, events.events_address, events.events_phone, events.events_contact_time, events.events_email  FROM events ORDER BY events_time DESC";
+	
 	$division = mysql_query($sql_division, $conn) or die ('Problem with query' . mysql_error());
+	
+	$events = mysql_query($sql_events, $conn) or die ('Problem with query' . mysql_error());
+	
+	$doc_category = mysql_query($sql_doctors_category, $conn) or die ('Problem with query' . mysql_error());
 ?>
 <?php include 'templates/header.php';?>	
 		
@@ -116,36 +133,68 @@
 				
 				<!--Event Tab-->
               <div role="tabpanel" class="tab-pane" id="events">
+			  <!-- Events -->
 			  
-			  <div class="row event-single">
-				<div class="col-md-4">
-				<h5>Location: Dhaka</h5>
-				<h5>Shop: M/S Medicine Shop</h5>
-				<h5>Date: 29-04-15</h5>
-				<h5>Time: 12:00pm</h5>
-				</div>
-				<div class="col-md-8">
-				<h2>Dr. Asfaq Ullah</h2>
-				<p>Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum
-				 Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum</p>
-				 </div>				
-			  </div>
-			  <div class="row event-single">
-				<div class="col-md-4">
-				<h5>Location: Dhaka</h5>
-				<h5>Shop: M/S Medicine Shop</h5>
-				<h5>Date: 29-04-15</h5>
-				<h5>Time: 12:00pm</h5>
-				</div>
-				<div class="col-md-8">
-				<h2>Dr. Asfaq Ullah</h2>
-				<p>Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum
-				 Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum Lorum Ipsum</p>
-				 </div>				
-			  </div>
+			  <?php										
+					while ($row = mysql_fetch_array($events)){ 
+					$events_name = $row["events_name"];	
+					$events_time = $row["events_time"];	
+					$events_address = $row["events_address"];	
+					$events_phone = $row["events_phone"];	
+					$events_contact_time = $row["events_contact_time"];	
+					$events_email = $row["events_email"];	
+					
+					
+					echo '<div class="row event-single">';
+					echo '<div class="col-md-12">';
+						echo '<h3>' . $events_name . '</h3>';
+					echo '</div>';
+					echo '<div class="col-md-4">';					
+						echo '<h5>Events Time: ' . $events_time . '</h5>';								
+						echo '<h5>Phone: ' .  $events_phone . '</h5>';
+						echo '<h5>Email:' .  $events_email . '</h5>';					
+					echo '</div>';
+					echo '<div class="col-md-8">';			
+						echo '<h5>Contact Time: ' .  $events_contact_time . '</h5>';
+						echo '<h5>Address: ' .  $events_address  . '</h5>';
+						
+					 echo '</div>';				
+				  echo '</div>';
+					
+					 
+					
+					}									
+				?>
+				
+			
+			  <!-- Events End -->
 			  
 			  </div>
-              <div role="tabpanel" class="tab-pane" id="doctor">No Doctors Found</div>
+              <div role="tabpanel" class="tab-pane" id="doctor">
+
+			  <!-- Doctors -->
+			  <h3>Doctor By Category</h3>
+			  <?php										
+					while ($row = mysql_fetch_array($doc_category)){ 
+					$doc_category_id = $row["doctors_category_id"];	
+					$doc_category_name = $row["doctors_category_name"];	
+					$doc_count = $row["doctors_count"];	
+					
+					echo '<div class="row">';
+					echo '<div class="col-md-12">';
+						echo '<div class="col-md-4">';						
+							//echo '<p><a href="' . $doc_category_name . '">' . $doc_category_name . '</a>(' . $doc_count . ')</p>';
+							echo '<a href="doctors.php?doctors_category_id='. $doc_category_id.'">' . $doc_category_name . '</a>(' . $doc_count . ')<br />';
+						echo '</div>';
+					echo '</div>';
+				
+									
+				  echo '</div>';
+					
+					 
+					
+					}									
+				?></div>
               <div role="tabpanel" class="tab-pane" id="discount">No Discount</div>
               <div role="tabpanel" class="tab-pane" id="blog">No Blog</div>
             </div>
