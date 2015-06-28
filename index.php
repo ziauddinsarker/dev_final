@@ -2,6 +2,14 @@
     include 'db/config.php';
 	$sql_division = "SELECT division.division_name FROM division ORDER BY division_name ASC";
 	
+
+	$sql_blog = "SELECT
+					blog.blog_id,
+					blog.blog_title,
+					blog.blog_description
+					FROM
+					blog";
+	
 	$sql_doctors_category = "SELECT
 					doctors_category.doctors_category_id,
 					doctors_category.doctors_category_name,
@@ -15,6 +23,8 @@
 	$sql_events = "SELECT events.events_name, events.events_time, events.events_address, events.events_phone, events.events_contact_time, events.events_email  FROM events ORDER BY events_time DESC";
 	
 	$division = mysql_query($sql_division, $conn) or die ('Problem with query' . mysql_error());
+	
+	$blog = mysql_query($sql_blog, $conn) or die ('Problem with query' . mysql_error());
 	
 	$events = mysql_query($sql_events, $conn) or die ('Problem with query' . mysql_error());
 	
@@ -83,10 +93,7 @@
 
 				</div>
 			</div>
-			
-			
-			
-			
+						
 			</div>
                 <div role="tabpanel" class="tab-pane active" id="price">
                     <div class="result-medicine" id="shop-result" >
@@ -196,7 +203,34 @@
 					}									
 				?></div>
               <div role="tabpanel" class="tab-pane" id="discount">No Discount</div>
-              <div role="tabpanel" class="tab-pane" id="blog">No Blog</div>
+              <div role="tabpanel" class="tab-pane" id="blog">
+			  
+			  <!-- Doctors -->
+			  <h3>Blog</h3>
+			  <?php										
+					while ($row = mysql_fetch_array($blog)){ 
+					$blog_id = $row["blog_id"];	
+					$blog_title = $row["blog_title"];	
+					$blog_description = $row["blog_description"];
+					
+					echo '<div class="row">';
+					echo '<div class="col-md-12">';						
+						
+							echo '<h3><a href="blog-single.php?article_id='. $blog_id.'">' . $blog_title . '</a></h3>';
+							echo '<p>'. $blog_description.'</p>';
+							
+						
+					echo '</div>';
+				
+									
+				  echo '</div>';
+					
+					 
+					
+					}									
+				?>
+			  
+			  </div>
             </div>
 
           </div>

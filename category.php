@@ -1,43 +1,37 @@
 <?php
 include 'db/config.php';
 //Get Category Id
-if ( empty($_GET['article_id']) )
+if ( empty($_GET['blog_category']) )
 {
 	
   header('Location: index.php');
   exit();
 }else{
 	
-	$id = $_GET['article_id'];
+	$id = $_GET['blog_category'];
 	
 }
-
 $sql_category = "SELECT
 blog_category.blog_category_id,
 blog_category.blog_category_name
 FROM
 blog_category";
 
-
 $sql_article = "SELECT
-	blog.blog_id,
-	blog.blog_title,
-	blog.blog_description,
-	GROUP_CONCAT(
-		blog_category.blog_category_name
-	) AS category
+blog_category.blog_category_name,
+blog_category.blog_category_id,
+blog.blog_title,
+blog.blog_id,
+blog.blog_description,
+blog.blog_category
 FROM
-	blog
-INNER JOIN article_category ON article_category.blog_id = blog.blog_id
-INNER JOIN blog_category ON blog.blog_category = blog_category.blog_category_id
-AND article_category.blog_category = blog_category.blog_category_id
+blog_category
+INNER JOIN blog ON blog.blog_category = blog_category.blog_category_id
 WHERE
-blog.blog_id = '$id'";
+blog_category.blog_category_id = '$id'";
 					
 $article = mysql_query($sql_article, $conn) or die ('Problem with query' . mysql_error());
 $category_result = mysql_query($sql_category, $conn) or die ('Problem with query' . mysql_error());
-
-
 
 ?>
 
@@ -53,20 +47,17 @@ $category_result = mysql_query($sql_category, $conn) or die ('Problem with query
 						
 						$blog_id = $row["blog_id"];	
 						$blog_title = $row["blog_title"];	
-						$blog_description = $row["blog_description"];	
-						$category = $row["category"];
+						$blog_description = $row["blog_description"];
 						
 						
 						
 							echo '<div class="col-md-9">';
-								echo '<h2> '.$blog_title.' </h2>';
-								echo '<p>Category: '.$category.' </p>';
+								echo '<h2> '.$blog_title.' </h2>';								
 								
 								echo '<p>'.$blog_description.' </p>';
 							echo '</div>';
 							}
-							
-							
+														
 							echo '<div class="3">';
 									echo '<h3>Blog Category</h3>';
 									echo '<ul>';

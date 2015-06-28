@@ -145,6 +145,7 @@ footer {
 }
 .tab-pane.active {
     background: none repeat scroll 0 0 white;
+	padding:10px;
 }
 
 .form-block {
@@ -282,4 +283,18 @@ footer {
 
 .glyphicon-earphone::before {
     padding: 0 10px 0 0;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+
+.doctors-profile {
+    background: lightsteelblue none repeat scroll 0 0;
+    border-radius: 5px;
+    padding: 10px;
 }
