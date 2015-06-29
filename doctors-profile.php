@@ -20,21 +20,25 @@ $sql_doctors_profile = "SELECT
 						doctors.doctors_bdmc_no,
 						doctors.doctors_speciality,
 						doctors.doctors_address,
+						doctors.doctor_district,
+						doctors_category.doctors_category_name,
+						doctors_category.doctors_category_description,
 						doctors_chamber.doctors_chambers_name,
 						doctors_chamber.doctors_chambers_address,
 						doctors_chamber.doctors_chambers_day,
 						doctors_chamber.doctors_chembers_time,
-						doctors_chamber.doctors_chambers_new_visit,
 						doctors_chamber.doctors_chambers_fee,
+						doctors_chamber.doctors_chambers_new_visit,
 						doctors_chamber.doctors_chambers_re_visit,
 						doctors_chamber.doctors_chambers_phone,
-						doctors.doctors_category
+						doctors_chamber.doctors_chambers_email,
+						doctors_chamber.doctors_chambers_call_for_apointment
 						FROM
 						doctors
 						INNER JOIN doctors_category ON doctors.doctors_category = doctors_category.doctors_category_id
 						INNER JOIN doctors_chamber ON doctors.doctors_chambers = doctors_chamber.doctors_chambers_id
 						WHERE
-						doctors_id = '$id'";
+						doctors.doctors_id = '$id'";
 						
 
 $sql_doctors_category = "SELECT
@@ -81,24 +85,25 @@ $doc_chamber_result = mysql_query($sql_doctors_profile, $conn) or die ('Problem 
 						$doctors_chambers_fee = $doctor['doctors_chambers_fee'];
 						$doctors_chambers_re_visit = $doctor['doctors_chambers_re_visit'];
 						$doctors_chambers_phone = $doctor['doctors_chambers_phone'];
-						$doctors_category =	$doctor['doctors_category'];
+						$doctors_category =	$doctor['doctors_category_name'];
 						
 						
-						echo '<h3>' . $doctors_name . '\'s Profile (' .$doctors_designation .')</h3>';
-						echo '<div class="row event-single">';
+						
+						echo '<div class="row doctors-single">';
 						echo '<div class="col-md-12">';
-							echo '<h3><a href="doctors-profile.php?doctors-id='. $doctors_id .'">' . $doctors_name . '</a></h3>';
+							echo '<h3>' . $doctors_name . '<sup>(0)</sup></h3>';
+							echo '<h4> (' .$doctors_designation .')</h4>';
 						echo '</div>';
 						echo '<div class="col-md-4">';					
-							echo '<h5>Designation: ' . $doctors_designation . '</h5>';								
-							echo '<h5>Speciality: ' .  $doctors_speciality . '</h5>';
-							echo '<h5>BDMC No: ' .  $doctors_bdmc_no . '</h5>';
+														
+							echo '<h5><b>Speciality:</b> ' .  $doctors_speciality . '</h5>';
+							echo '<h5><b>BDMC No:</b> ' .  $doctors_bdmc_no . '</h5>';
 												
 						echo '</div>';
 						echo '<div class="col-md-8">';
-							echo '<h5>Email:' .  $doctors_email . '</h5>';						
-							echo '<h5>Contact: ' .  $doctors_phone . '</h5>';
-							echo '<h5>Address: ' .  $doctors_address  . '</h5>';	
+							echo '<h5><b>Email:</b>' .  $doctors_email . '</h5>';						
+							echo '<h5><b>Contact:</b> ' .  $doctors_phone . '</h5>';
+							echo '<h5><b>Address:</b> ' .  $doctors_address  . '</h5>';	
 							echo '</div>';
 						}
 						

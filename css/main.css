@@ -298,3 +298,13 @@ th, td {
     border-radius: 5px;
     padding: 10px;
 }
+
+
+.row.post-single {
+    background-color: silver;
+    border-radius: 5px;
+}
+
+.row.event-single {
+    background-color: silver;
+}

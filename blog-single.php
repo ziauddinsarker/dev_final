@@ -20,17 +20,13 @@ blog_category";
 
 
 $sql_article = "SELECT
-	blog.blog_id,
-	blog.blog_title,
-	blog.blog_description,
-	GROUP_CONCAT(
-		blog_category.blog_category_name
-	) AS category
+blog.blog_id,
+blog.blog_title,
+blog.blog_description,
+blog_category.blog_category_name
 FROM
-	blog
-INNER JOIN article_category ON article_category.blog_id = blog.blog_id
-INNER JOIN blog_category ON blog.blog_category = blog_category.blog_category_id
-AND article_category.blog_category = blog_category.blog_category_id
+blog
+INNER JOIN blog_category ON blog.blog_category = blog_category.blog_category_name
 WHERE
 blog.blog_id = '$id'";
 					
@@ -46,7 +42,7 @@ $category_result = mysql_query($sql_category, $conn) or die ('Problem with query
 			<section class="shop-result medicine-result">	
 				
 				<?php
-				echo '<div class="row">';
+				echo '<div class="row post-single">';
 					while ( $row = mysql_fetch_assoc($article) )
 					{
 						
@@ -54,20 +50,20 @@ $category_result = mysql_query($sql_category, $conn) or die ('Problem with query
 						$blog_id = $row["blog_id"];	
 						$blog_title = $row["blog_title"];	
 						$blog_description = $row["blog_description"];	
-						$category = $row["category"];
+						
 						
 						
 						
 							echo '<div class="col-md-9">';
 								echo '<h2> '.$blog_title.' </h2>';
-								echo '<p>Category: '.$category.' </p>';
+								
 								
 								echo '<p>'.$blog_description.' </p>';
 							echo '</div>';
 							}
 							
 							
-							echo '<div class="3">';
+							echo '<div class="col-md-3">';
 									echo '<h3>Blog Category</h3>';
 									echo '<ul>';
 									while ( $row = mysql_fetch_assoc($category_result) )
