@@ -308,3 +308,13 @@ th, td {
 .row.event-single {
     background-color: silver;
 }
+
+
+
+
+
+.nav > li > a {
+    display: block;
+    padding: 10px !important;
+    position: relative;
+}

@@ -12,15 +12,26 @@
 	
 		<link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">		
+        <link rel="stylesheet" href="css/font-awesome.min.css">		
 		<link rel="stylesheet" href="css/main.css">	
 		<link rel="stylesheet" href="css/login-style.css">	
-		
-			
 		
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>	
     </head>
 	
 	<body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=456150854563225";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	
+	
+	
 	<!--Header Starts Here -->	
 	<header>
 		<!-- Fixed navbar -->
@@ -43,6 +54,8 @@
 		  
 		  <nav class="main-nav nav navbar-nav navbar-right">
 			<ul>
+			<li><a href="https://www.facebook.com/BhaloAchee" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+			<li><a href="https://twitter.com/BhaloAchee" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
 			<li><a class="cd-signin btn btn-primary" href="/dev_final/deshboard/login/index.php">Sign in</a></li>
 			<li><a class="cd-signup btn btn-primary" href="/dev_final/signup.php">Sign up</a></li>
 				 <!-- 
@@ -51,6 +64,7 @@
 				-->
 				
 			</ul>
+		
 		</nav>
 		
 		</div><!--/.nav-collapse -->

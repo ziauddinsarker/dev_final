@@ -1,8 +1,15 @@
 <?php //Database Configuration File
     include 'db/config.php';
 	$sql_division = "SELECT division.division_name FROM division ORDER BY division_name ASC";
+	$sql_district = "SELECT
+					district.district_name
+					FROM
+					district
+					ORDER BY 
+					district_name
+					ASC
+					";
 	
-
 	$sql_blog = "SELECT
 					blog.blog_id,
 					blog.blog_title,
@@ -23,6 +30,7 @@
 	$sql_events = "SELECT events.events_name, events.events_time, events.events_address, events.events_phone, events.events_contact_time, events.events_email  FROM events ORDER BY events_time DESC";
 	
 	$division = mysql_query($sql_division, $conn) or die ('Problem with query' . mysql_error());
+	$districts = mysql_query($sql_district, $conn) or die ('Problem with query' . mysql_error());
 	
 	$blog = mysql_query($sql_blog, $conn) or die ('Problem with query' . mysql_error());
 	
@@ -42,10 +50,13 @@
             <ul class="nav nav-tabs" role="tablist">
 			  <li role="presentation"><a href="#about" aria-controls="about" role="tab" data-toggle="tab">About</a></li>
               <li role="presentation" class="active"><a href="#price" aria-controls="home" role="tab" data-toggle="tab">Find Medicine Price</a></li>
-              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Find Social Event</a></li>
+              <li role="presentation"><a href="#events" aria-controls="profile" role="tab" data-toggle="tab">Free Social Event</a></li>
+              <li role="presentation"><a href="#top-rating" aria-controls="profile" role="tab" data-toggle="tab">Top Ratings</a></li>			  
+              <li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Discount Offer</a></li>
               <li role="presentation"><a href="#doctor" aria-controls="messages" role="tab" data-toggle="tab">Find Doctors</a></li>
-              <li role="presentation"><a href="#discount" aria-controls="messages" role="tab" data-toggle="tab">Find Discount</a></li>
-              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Blog & News</a></li>
+              <li role="presentation"><a href="#healthcare" aria-controls="messages" role="tab" data-toggle="tab">Healthcare Centers</a></li>
+              <li role="presentation"><a href="#blog" aria-controls="settings" role="tab" data-toggle="tab">Review & News</a></li>
+              <li role="presentation"><a href="#contact" aria-controls="settings" role="tab" data-toggle="tab">Contact Us</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -178,7 +189,24 @@
 			  
 			  </div>
               <div role="tabpanel" class="tab-pane" id="doctor">
-
+			
+				<div class="row">
+					<div class="col-md-12">
+						<div class="btn-group" data-toggle="buttons" id="division"> 
+								<?php							
+									while ($row = mysql_fetch_array($districts)){ 
+									$district_name = $row["district_name"];										
+									echo "<label class=\"btn btn-primary\">";
+									echo "<input type=\"radio\" name=\"district\" class=\"track-order-change\" id=". strtolower($district_name) ." value=".$row['district_name']." onchange='showDistrict(this.value)'>";
+									echo  $district_name;
+									echo "</label>";
+									}									
+								?>
+			
+						</div>
+					
+					</div>			
+				</div>
 			  <!-- Doctors -->
 			  <h3>Doctor By Category</h3>
 			  <?php										
@@ -193,16 +221,14 @@
 							//echo '<p><a href="' . $doc_category_name . '">' . $doc_category_name . '</a>(' . $doc_count . ')</p>';
 							echo '<a href="doctors.php?doctors_category_id='. $doc_category_id.'">' . $doc_category_name . '</a>(' . $doc_count . ')<br />';
 						echo '</div>';
-					echo '</div>';
-				
-									
+					echo '</div>';								
 				  echo '</div>';
-					
-					 
-					
 					}									
 				?></div>
+				
+              <div role="tabpanel" class="tab-pane" id="healthcare">Health Care Ce</div>
               <div role="tabpanel" class="tab-pane" id="discount">No Discount</div>
+              <div role="tabpanel" class="tab-pane" id="top-rating">No Top Rating</div>
               <div role="tabpanel" class="tab-pane" id="blog">
 			  
 			  <!-- Doctors -->
@@ -230,6 +256,85 @@
 					}									
 				?>
 			  
+			  </div>
+			  <div role="tabpanel" class="tab-pane" id="contact">
+			  <!-- Contact Tab -->
+				<div class="row">
+					<div class="col-md-4">
+					<h4>Contact for RSB<h5>(Rating on Social Branding)</h5></h4>
+						<form role="form">
+							<div class="form-group">
+								<label for="name">Name:</label>
+								<input type="text" class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label for="email">Email address:</label>
+								<input type="email" class="form-control" id="email">
+							</div>
+							<div class="form-group">
+								<label for="submittext">Submit Text:</label>
+								<input type="textarea" class="form-control" id="submittext">
+							</div>
+						
+							  <button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+					
+					<div class="col-md-4"> 
+					<h4>Contact for other reasons</h4>
+					<form role="form">
+						<div class="form-group">
+							<label for="subject">Subject:</label>
+							<input type="text" class="form-control" id="subject">
+						</div>
+						<div class="form-group">
+							<label for="name">Name:</label>
+							<input type="text" class="form-control" id="name">
+						</div>
+						<div class="form-group">
+							<label for="email">Email address:</label>
+							<input type="email" class="form-control" id="email">
+						</div>						
+						<div class="form-group">
+							<label for="phone">Phone Number:</label>
+							<input type="text" class="form-control" id="phone">
+						</div>
+						<div class="form-group">
+							<label for="submittext">Submit Text:</label>
+							<input type="textarea" class="form-control" id="submittext">
+						</div>
+					
+						  <button type="submit" class="btn btn-default">Submit</button>
+					</form>
+					
+					</div>
+					
+					<div class="col-md-4">
+					<h4>Contact for Advertisement</h4>
+						 <form role="form">
+							<div class="form-group">
+								<label for="name">Name:</label>
+								<input type="text" class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label for="email">Email address:</label>
+								<input type="email" class="form-control" id="email">
+							</div>
+							<div class="form-group">
+								<label for="phone">Phone Number:</label>
+								<input type="text" class="form-control" id="phone">
+							</div>
+							<div class="form-group">
+								<label for="submittext">Submit Text:</label>
+								<input type="textarea" class="form-control" id="submittext">
+							</div>
+						
+							  <button type="submit" class="btn btn-default">Submit</button>
+						</form>
+					</div>
+				</div>
+			  <!-- Contact Tab -->
+				
 			  </div>
             </div>
 
