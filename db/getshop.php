@@ -61,8 +61,14 @@ $strengthsqlrs = $conn->query($strengthsql);
 										if ($brandsqlrs->num_rows > 0) {
 											// output data of each row
 											while($row = $brandsqlrs->fetch_assoc()) {
-												echo "<h3><a href=\"#\">" . $row['brand_name'] . " </a> <span class=\"medicine-result-generic\">(<a href=\"#\" id=\"genericname\">". $row['generic_name']."</a>)</span></h3>";
-												echo "<p>".$row['brand_description']. "</p>";
+												echo '<div class="row">';
+													echo "<h3><a href=\"#\">" . $row['brand_name'] . " </a> <span class=\"medicine-result-generic\">(<a href=\"#\" id=\"genericname\">". $row['generic_name']."</a>)</span></h3>";
+													//echo 'Con.: ' . 450mg .' Vol.:' . 5ml. ' Quantity: '. 50 .'  Price: BDT(+/-) '. 400 MRP .'';
+													echo '<b>Con.: 450mg Vol.:5ml Quantity:50  Price: BDT(+/-) 400 MRP </b>';
+												echo '</div>';
+												echo '<div class="row">';
+													echo "<p>".$row['brand_description']. "</p>";
+												echo '<div class="row">';
 												}
 											}
 										else {

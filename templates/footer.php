@@ -50,6 +50,7 @@
 					name: 'typeahead',
 					//header:'<h2>Name</h2>',
 					valueKey: 'brand_name_fk',
+					minLength: 3,
 					template: '<p>{{brand_name_fk}} - {{strength_name_fk}} - ({{form_name_fk}})</p>',
 					engine: Hogan,
 					remote:'db/search.php?key=%QUERY',

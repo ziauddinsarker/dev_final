@@ -1,43 +1,4 @@
-<?php //Database Configuration File
-    include 'db/config.php';
-	$sql_division = "SELECT division.division_name FROM division ORDER BY division_name ASC";
-	$sql_district = "SELECT
-					district.district_name
-					FROM
-					district
-					ORDER BY 
-					district_name
-					ASC
-					";
-	
-	$sql_blog = "SELECT
-					blog.blog_id,
-					blog.blog_title,
-					blog.blog_description
-					FROM
-					blog";
-	
-	$sql_doctors_category = "SELECT
-					doctors_category.doctors_category_id,
-					doctors_category.doctors_category_name,
-					COUNT(doctors_category.doctors_category_id) doctors_count
-					FROM
-					doctors_category
-					INNER JOIN doctors ON doctors.doctors_category = doctors_category.doctors_category_id
-					GROUP BY doctors_category.doctors_category_id
-					ORDER BY doctors_category.doctors_category_name";
-	
-	$sql_events = "SELECT events.events_name, events.events_time, events.events_address, events.events_phone, events.events_contact_time, events.events_email  FROM events ORDER BY events_time DESC";
-	
-	$division = mysql_query($sql_division, $conn) or die ('Problem with query' . mysql_error());
-	$districts = mysql_query($sql_district, $conn) or die ('Problem with query' . mysql_error());
-	
-	$blog = mysql_query($sql_blog, $conn) or die ('Problem with query' . mysql_error());
-	
-	$events = mysql_query($sql_events, $conn) or die ('Problem with query' . mysql_error());
-	
-	$doc_category = mysql_query($sql_doctors_category, $conn) or die ('Problem with query' . mysql_error());
-?>
+
 <?php include 'templates/header.php';?>	
 		
 			<section class="shop-result medicine-result">
@@ -197,7 +158,7 @@
 									while ($row = mysql_fetch_array($districts)){ 
 									$district_name = $row["district_name"];										
 									echo "<label class=\"btn btn-primary\">";
-									echo "<input type=\"radio\" name=\"district\" class=\"track-order-change\" id=". strtolower($district_name) ." value=".$row['district_name']." onchange='showDistrict(this.value)'>";
+									echo "<input type=\"radio\" name=\"district\" class=\"track-order-change \" id=". strtolower($district_name) ." value=".$row['district_name']." onchange='showDistrict(this.value)'>";
 									echo  $district_name;
 									echo "</label>";
 									}									
@@ -226,7 +187,29 @@
 					}									
 				?></div>
 				
-              <div role="tabpanel" class="tab-pane" id="healthcare">Health Care Ce</div>
+              <div role="tabpanel" class="tab-pane" id="healthcare">
+			  
+				 <h3>Healthcare Centers</h3>
+					  <?php										
+							while ($row = mysql_fetch_array($healthcare)){ 
+							$company_cat_id = $row["company_cat_id"];	
+							$company_cat_name = $row["company_cat_name"];	
+							
+							echo '<div class="row">';
+							echo '<div class="col-md-12">';
+								echo '<div class="col-md-4">';						
+									//echo '<p><a href="' . $doc_category_name . '">' . $doc_category_name . '</a>(' . $doc_count . ')</p>';
+									echo '<a href="healthcare.php?company_cat_id='. $company_cat_id.'">' . $company_cat_name . '</a><br />';
+								echo '</div>';
+							echo '</div>';								
+						  echo '</div>';
+							}									
+						?>
+			
+			  
+			  
+			  
+			  </div>
               <div role="tabpanel" class="tab-pane" id="discount">No Discount</div>
               <div role="tabpanel" class="tab-pane" id="top-rating">No Top Rating</div>
               <div role="tabpanel" class="tab-pane" id="blog">
@@ -275,7 +258,7 @@
 								<label for="submittext">Submit Text:</label>
 								<input type="textarea" class="form-control" id="submittext">
 							</div>
-						
+							<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
 							  <button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</div>
@@ -303,7 +286,7 @@
 							<label for="submittext">Submit Text:</label>
 							<input type="textarea" class="form-control" id="submittext">
 						</div>
-					
+						<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
 						  <button type="submit" class="btn btn-default">Submit</button>
 					</form>
 					
@@ -328,7 +311,7 @@
 								<label for="submittext">Submit Text:</label>
 								<input type="textarea" class="form-control" id="submittext">
 							</div>
-						
+						<div class="g-recaptcha" data-sitekey="6LfkZgkTAAAAAD1ji_rJ5623vxgk7-uwVSa2Ik3i"></div>
 							  <button type="submit" class="btn btn-default">Submit</button>
 						</form>
 					</div>

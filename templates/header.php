@@ -1,3 +1,56 @@
+<?php //Database Configuration File
+    include 'db/config.php';
+	$sql_division = "SELECT division.division_name FROM division ORDER BY division_name ASC";
+	$sql_district = "SELECT
+					district.district_name
+					FROM
+					district
+					ORDER BY 
+					district_name
+					ASC
+					";
+	
+	$sql_blog = "SELECT
+					blog.blog_id,
+					blog.blog_title,
+					blog.blog_description
+					FROM
+					blog";
+	$sql_healthcare = "SELECT
+						company_category.company_cat_id,
+						company_category.company_cat_name
+						FROM
+						company_category
+						ORDER BY
+						company_cat_name
+						ASC
+						";
+	
+	$sql_doctors_category = "SELECT
+					doctors_category.doctors_category_id,
+					doctors_category.doctors_category_name,
+					COUNT(doctors_category.doctors_category_id) doctors_count
+					FROM
+					doctors_category
+					INNER JOIN doctors ON doctors.doctors_category = doctors_category.doctors_category_id
+					GROUP BY doctors_category.doctors_category_id
+					ORDER BY doctors_category.doctors_category_name";
+	
+	$sql_events = "SELECT events.events_name, events.events_time, events.events_address, events.events_phone, events.events_contact_time, events.events_email  FROM events ORDER BY events_time DESC";
+	
+	$division = mysql_query($sql_division, $conn) or die ('Problem with query' . mysql_error());
+	$districts = mysql_query($sql_district, $conn) or die ('Problem with query' . mysql_error());
+	
+	$blog = mysql_query($sql_blog, $conn) or die ('Problem with query' . mysql_error());
+	
+	$healthcare = mysql_query($sql_healthcare, $conn) or die ('Problem with query' . mysql_error());
+	
+	$events = mysql_query($sql_events, $conn) or die ('Problem with query' . mysql_error());
+	
+	$doc_category = mysql_query($sql_doctors_category, $conn) or die ('Problem with query' . mysql_error());
+?>
+
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -16,7 +69,8 @@
 		<link rel="stylesheet" href="css/main.css">	
 		<link rel="stylesheet" href="css/login-style.css">	
 		
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>	
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+		<script src='https://www.google.com/recaptcha/api.js'></script>		
     </head>
 	
 	<body>
