@@ -113,7 +113,19 @@
 				<!--Event Tab-->
               <div role="tabpanel" class="tab-pane" id="events">
 			  <!-- Events -->
-			  
+			  <?php
+				function seoUrl($string) {
+					//Lower case everything
+					$string = strtolower($string);
+					//Make alphanumeric (removes all other characters)
+					$string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+					//Clean up multiple dashes or whitespaces
+					$string = preg_replace("/[\s-]+/", " ", $string);
+					//Convert whitespaces and underscore to dash
+					$string = preg_replace("/[\s_]/", "-", $string);
+					return $string;
+				}
+			  ?>
 			  <?php										
 					while ($row = mysql_fetch_array($events)){ 
 					$events_name = $row["events_name"];	
@@ -123,21 +135,24 @@
 					$events_contact_time = $row["events_contact_time"];	
 					$events_email = $row["events_email"];	
 					
+					$eventid = seoUrl($row["events_name"]);
 					
-					echo '<div class="row event-single">';
+					echo '<div class="row event-single" id="'. $eventid .'">';
 					echo '<div class="col-md-12">';
 						echo '<h3>' . $events_name . '</h3>';
+						echo '<div class="fb-share-button" data-href="http://bhalo-achee.com'. $eventid .'" data-layout="button_count"></div>';
 					echo '</div>';
 					echo '<div class="col-md-4">';					
-						echo '<h5>Events Time: ' . $events_time . '</h5>';								
-						echo '<h5>Phone: ' .  $events_phone . '</h5>';
-						echo '<h5>Email:' .  $events_email . '</h5>';					
+						echo '<h5><b>Events Time:</b> ' . $events_time . '</h5>';								
+						echo '<h5><b>Phone:</b> ' .  $events_phone . '</h5>';
+						echo '<h5><b>Email:</b> ' .  $events_email . '</h5>';					
 					echo '</div>';
 					echo '<div class="col-md-8">';			
-						echo '<h5>Contact Time: ' .  $events_contact_time . '</h5>';
-						echo '<h5>Address: ' .  $events_address  . '</h5>';
+						echo '<h5><b>Contact Time:</b> ' .  $events_contact_time . '</h5>';
+						echo '<h5><b>Address:</b> ' .  $events_address  . '</h5>';
 						
-					 echo '</div>';				
+					 echo '</div>';	
+							
 				  echo '</div>';
 					
 					 
@@ -153,6 +168,7 @@
 			
 				<div class="row">
 					<div class="col-md-12">
+					<h2>Find Doctors by District
 						<div class="btn-group" data-toggle="buttons" id="division"> 
 								<?php							
 									while ($row = mysql_fetch_array($districts)){ 
@@ -185,7 +201,15 @@
 					echo '</div>';								
 				  echo '</div>';
 					}									
-				?></div>
+				?>
+				
+				<div class="row doctor-ajax">
+				
+				</div>
+				
+				
+				
+				</div>
 				
               <div role="tabpanel" class="tab-pane" id="healthcare">
 			  
@@ -210,7 +234,57 @@
 			  
 			  
 			  </div>
-              <div role="tabpanel" class="tab-pane" id="discount">No Discount</div>
+              <div role="tabpanel" class="tab-pane" id="discount">
+					<h3>Find Discount By Category</h3>
+					<div class="btn-group" data-toggle="buttons" id="division"> 
+					  <?php										
+							while ($row = mysql_fetch_array($company_category)){ 
+							$company_cat_id = $row["company_cat_id"];	
+							$company_cat_name = $row["company_cat_name"];	
+							
+							echo "<label class=\"btn btn-primary\">";
+							echo "<input type=\"radio\" name=\"district\" class=\"track-order-change \" id=". strtolower($company_cat_name) ." value=".$row['company_cat_name']." onchange='showDistrict(this.value)'>";
+							echo  $company_cat_name;
+							echo "</label>";
+
+							}									
+						?>
+					</div>
+		<!--Discount---->
+		
+		
+			<h2>Latest Discount </h2>
+		
+			  <?php		
+
+			  
+					while ($row = mysql_fetch_array($discount)){ 
+					$discount_name = $row["discount_name"];				
+					$discount_time = $row["discount_time_start"];				
+								
+					
+					$discountid = seoUrl($row["discount_name"]);
+					
+					echo '<div class="row event-single" id="'. $discountid .'">';
+					echo '<div class="col-md-12">';
+						echo '<h3>' . $discount_name . '</h3>';
+						echo '<div class="fb-share-button" data-href="http://bhalo-achee.com'. $discountid .'" data-layout="button_count"></div>';
+					echo '</div>';
+					echo '<div class="col-md-4">';					
+						echo '<h5><b>Discount starts on:</b> ' . $discount_time . '</h5>';								
+									
+					echo '</div>';
+			
+				  echo '</div>';
+					
+					 
+					
+					}									
+				?>
+				
+			
+			  <!-- Events End -->
+			  </div>
               <div role="tabpanel" class="tab-pane" id="top-rating">No Top Rating</div>
               <div role="tabpanel" class="tab-pane" id="blog">
 			  

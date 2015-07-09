@@ -37,6 +37,22 @@
 					ORDER BY doctors_category.doctors_category_name";
 	
 	$sql_events = "SELECT events.events_name, events.events_time, events.events_address, events.events_phone, events.events_contact_time, events.events_email  FROM events ORDER BY events_time DESC";
+	$sql_company_category= "SELECT
+							company_category.company_cat_id,
+							company_category.company_cat_name
+							FROM
+							company_category
+							ORDER BY
+							company_category.company_cat_name ASC
+							";
+	$sql_discount = "SELECT
+				discount.discount_name,
+				discount.discount_time_start,
+				discount.dicount_time_end
+				FROM
+				discount
+				ORDER BY
+				discount.discount_time_start ASC";
 	
 	$division = mysql_query($sql_division, $conn) or die ('Problem with query' . mysql_error());
 	$districts = mysql_query($sql_district, $conn) or die ('Problem with query' . mysql_error());
@@ -46,8 +62,10 @@
 	$healthcare = mysql_query($sql_healthcare, $conn) or die ('Problem with query' . mysql_error());
 	
 	$events = mysql_query($sql_events, $conn) or die ('Problem with query' . mysql_error());
+	$discount = mysql_query($sql_discount, $conn) or die ('Problem with query' . mysql_error());
 	
 	$doc_category = mysql_query($sql_doctors_category, $conn) or die ('Problem with query' . mysql_error());
+	$company_category = mysql_query($sql_company_category, $conn) or die ('Problem with query' . mysql_error());
 ?>
 
 
@@ -75,14 +93,14 @@
 	
 	<body>
 	<div id="fb-root"></div>
+	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
 	  js = d.createElement(s); js.id = id;
-	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=456150854563225";
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=753346058061846";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-	
 	
 	
 	

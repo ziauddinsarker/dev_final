@@ -116,20 +116,25 @@ footer {
     color: #fe6;
     font-size: 14px;
 }
+a {
+color: #000;
+}
 
-
-
+.nav.nav-tabs a {
+    color: #fff;
+}
 .navbar.navbar-default.navbar-fixed-top {
-    background: none repeat scroll 0 0 #fe6;
+    background: none repeat scroll 0 0 #4282BC;
+	opacity:0.90;
 }
 
 .event-single {
-    /* background: none repeat scroll 0 0 tan; */
-    border-radius: 10px;
+    /* background: none repeat scroll 0 0 tan;
+    border-radius: 10px; */
     margin: 10px 0 8px;
 }
 #main-tab {
-    background: none repeat scroll 0 0 #fe6;
+    background: none repeat scroll 0 0 #4282BC;
     padding:20px 20px;
 	border-radius:10px;
 	margin-bottom:60px;
@@ -306,9 +311,9 @@ th, td {
 }
 
 .row.event-single {
-    background-color: silver;
+    border: 1px solid;
+    padding: 0 0 12px;
 }
-
 
 
 
