@@ -303,5 +303,16 @@
 
     </script>
 		
+	<script>
+		$('#openBtn').click(function(){
+  
+				$('.modal-body').load('/render/62805',function(result){
+					$('#myModal').modal({show:true});
+				});
+			  
+				
+			});
+	</script>	
+	
     </body>
 </html>

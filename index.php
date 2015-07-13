@@ -312,6 +312,20 @@
 					
 					}									
 				?>
+				<a href="#" class="btn" id="openBtn">+</a>
+
+				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">×</button>
+							<h3>Modal header</h3>
+					</div>
+					<div class="modal-body">
+						<p>My modal content here…</p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			  
 			  </div>
 			  <div role="tabpanel" class="tab-pane" id="contact">
